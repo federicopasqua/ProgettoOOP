@@ -21,13 +21,20 @@ import it.ProgettoOOP.models.DirectoryPath;
 import it.ProgettoOOP.models.directory;
 import it.ProgettoOOP.services.Services;
 
+
+/**
+ * Definizione di tutti gli endpoint disponibili.
+ */
 @RestController
 public class Controller {
 	
 	@Autowired
     Services service;
 	
-	
+	/**
+    * Visualizza il contenuto delle cartelle nel DropBox.
+    * @param path Percorso della cartella da visualizzare.
+    */
 	@PostMapping("/getdirectories")
 	public ResponseEntity<Object> get_directories(@RequestBody DirectoryPath path){
 
@@ -41,6 +48,10 @@ public class Controller {
 		
 	}
 	
+	/**
+    * Scarica una cartella in locale.
+    * @param path Percorso della cartella da scaricare.
+    */
 	@PostMapping("/downloaddirectory")
 	public ResponseEntity<Object> download_directory(@RequestBody DirectoryPath path){
 		try {
@@ -57,6 +68,10 @@ public class Controller {
 		return new ResponseEntity<>("Downloaded.", HttpStatus.OK);
 	}
 	
+	/**
+    * Visualizza le cartelle scaricate in locale.
+    * @param path Path della cartella da visualizzare.
+    */
 	@PostMapping("/getlocaldirectories")
 	public ResponseEntity<Object> get_local_directories(@RequestBody DirectoryPath path){
 		try {
@@ -66,14 +81,16 @@ public class Controller {
 		}
 	}
 	
+	
+	/**
+    * Visualizza i metadata.
+    */
 	@GetMapping("/get_metadata")
 	public String get_metadata() {
 		ObjectMapper mapper = new ObjectMapper();
-	    //There are other configuration options you can set.  This is the one I needed.
 	    mapper.configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true);
 	    try {
 	    	JsonSchema schema = mapper.generateJsonSchema(directory.class);
-
 	    
 			return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(schema);
 		} catch (JsonProcessingException e) {
@@ -81,7 +98,10 @@ public class Controller {
 		}
 	}
 	
-	
+	/**
+    * Cancella una cartella in locale.
+    * @param path Percorso della cartella da eliminare.
+    */
 	@PostMapping("/delete_folder")
 	public ResponseEntity<Object> delete_folder(@RequestBody DirectoryPath path){
 		try {
@@ -97,6 +117,10 @@ public class Controller {
 		return new ResponseEntity<>("Removed.", HttpStatus.OK);
 	}
 	
+	/**
+    * Visualizza le statistiche sulla dimensione dei file divisi per estensione.
+    * @param path Percorso della cartella da analizzare.
+    */
 	@PostMapping("/getstatistics")
 	public ResponseEntity<Object> get_statistics(@RequestBody DirectoryPath path){
 		try {

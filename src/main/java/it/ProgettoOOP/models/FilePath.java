@@ -2,12 +2,20 @@ package it.ProgettoOOP.models;
 
 import java.util.regex.PatternSyntaxException;
 
+/**
+ *Questa classe estende la classe Path e rappresenta il percorso specifico di un file
+ */
+
 public class FilePath extends Path{
 
 	public FilePath() {
 		super();
 	}
 	
+	/**
+	 *Costruttore
+	 * @param path Percorso di un file.
+	 */
 	public FilePath(String path) {
 		super(path);
 		if (this.path.endsWith("/")) {
@@ -15,6 +23,9 @@ public class FilePath extends Path{
 		}
 	}
 	
+	/**
+	 *Restituisce l'estensione del file se presente, altrimenti restituisce 'other'
+	 */
 	public String FileType() {
 		try {
 			
@@ -31,6 +42,9 @@ public class FilePath extends Path{
 		}
 	}
 	
+	/**
+	 *Metodo che corregge eventuali errori e controlla non ci siano tentativi di accedere file non autorizzati
+	 */
 	public Boolean sanitize_check() {
 		this.path.replaceAll("//", "/");
 		if (this.path.endsWith("/")) {

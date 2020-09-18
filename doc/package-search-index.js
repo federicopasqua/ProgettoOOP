@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"it.ProgettoOOP.controller"},{"l":"it.ProgettoOOP.exceptions"},{"l":"it.ProgettoOOP.models"},{"l":"it.ProgettoOOP.services"},{"l":"it.ProgettoOOP.utils"}]

@@ -2,6 +2,10 @@ package it.ProgettoOOP.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ *classe che rappresenta le statistiche dello stesso tipo.
+ */
+
 public class FilesStatistics {
 	private long min = 0;
 	private long max = 0;
@@ -28,6 +32,11 @@ public class FilesStatistics {
 	public int getN() {
 		return n;
 	}
+	
+	/**
+	 *Metodo per aggiungere un file alle statistiche
+	 * @param file File da aggiungere alle statistiche.
+	 */
 	
 	public void add_file(FileModel file) {
 		long dim = file.getDimension();

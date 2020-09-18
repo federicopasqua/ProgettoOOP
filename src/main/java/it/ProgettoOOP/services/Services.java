@@ -22,10 +22,18 @@ import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
-
+/**
+ *Classe di tutti i servizi usati nel Controller.
+ */
 @Service
 public class Services {
 	
+	/**
+	 *Richiede la lista delle cartelle presenti nel dropbox.
+	 *@param path Percorso della cartella.
+	 *@return Cartelle di DropBox mappate su un oggetto Directory.
+	 *@throws InvalidPathException Viene lanciata un eccezione se il percorso non è valido.
+	 */
 	public directory get_dropbox_list(DirectoryPath path) throws InvalidPathException, MalformedURLException, IOException, ParseException{
 		if (!path.sanitize_check()) {
 			throw new InvalidPathException("Nice Try");
@@ -80,7 +88,12 @@ public class Services {
 		return dir;
 	}
 	
-	
+	/**
+	 *Scarica una cartella in locale, mantenendo la gerarchia presente nel DropBox.
+	 *@param path Percorso della cartella.
+	 *@throws InvalidPathException Viene lanciata un'eccezione se il percorso non è valido.
+	 *@throws ZipSlipException Viene lanciata un'eccezione se viene rilevato uno zip slip.
+	 */
 	public void download_directory(DirectoryPath path) throws InvalidPathException, IOException, ZipSlipException{
 		if (!path.sanitize_check()) {
 			throw new InvalidPathException("Nice Try");
@@ -115,7 +128,12 @@ public class Services {
 		file.delete();
 	}
 
-	
+	/**
+	 *Lista le cartelle scaricate localmente.
+	 *@param path Percorso della cartella.
+	 *@return La cartella locale mappata su un oggetto Direcotory.
+	 *@throws InvalidPathException Viene lanciata un'eccezione se il percorso non è valido.
+	 */
 	public directory get_local_list(DirectoryPath path) throws  InvalidPathException{
 		if (!path.sanitize_check()) {
 			throw new InvalidPathException("Nice Try");
@@ -123,6 +141,12 @@ public class Services {
 		return utils.map_directory(path);
 	}
 	
+	/**
+	 *Cancella una cartella in locale.
+	 *@param path Percorso della cartella.
+	 *@throws InvalidPathException Viene lanciata un'eccezione se il percorso non è valido.
+	 *@throws DeleteFailException Viene lanciata un'eccezione se non è stato possibile eliminare la cartella.
+	 */
 	public void delete_directory(DirectoryPath path) throws InvalidPathException, DeleteFailException {
 		if (!path.sanitize_check()) {
 			throw new InvalidPathException("Nice Try");
@@ -151,7 +175,12 @@ public class Services {
 		
 	}
 	
-	
+	/**
+	 *Visualizza le statistiche sulle dimensione dei file contenuti in una cartella.
+	 *@param path Percorso della cartella.
+	 *@return Restituisce le statistiche dei file contenuti nella cartella divisi per tipo.
+	 *@throws InvalidPathException Viene lanciata un'eccezione se il percorso non è valido.
+	 */
 	public statistics get_directory_statistics(DirectoryPath path) throws InvalidPathException {
 		if (!path.sanitize_check()) {
 			throw new InvalidPathException("Nice Try");

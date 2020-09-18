@@ -1,5 +1,9 @@
 package it.ProgettoOOP.models;
 
+/**
+ *Classe che identifica un percorso.
+ */
+
 public class Path {
 	protected String path;
 	
@@ -7,7 +11,10 @@ public class Path {
 		this.path = "";
 	}
 	
-	
+	/**
+	 *Costruttore
+	 * @param path Percorso.
+	 */
 	public Path(String path) {
 		path.replaceAll("//", "/");
 		if (!this.path.startsWith("/")) {
@@ -22,11 +29,16 @@ public class Path {
 		return path;
 	}
 	
+	/**
+	 *Getter specifico per DropBox dove root è rappresentato da "" invece di "/"
+	 */
 	public String dropboxCompatiblePath() {
 		return path;
 	}
 	
-	
+	/**
+	 *Metodo che corregge eventuali errori e controlla non ci siano tentativi di accedere file non autorizzati
+	 */
 	public Boolean sanitize_check() {
 		this.path.replaceAll("//", "/");
 		if (!this.path.startsWith("/")) {
