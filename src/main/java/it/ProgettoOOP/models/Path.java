@@ -17,8 +17,8 @@ public class Path {
 	 */
 	public Path(String path) {
 		path.replaceAll("//", "/");
-		if (!this.path.startsWith("/")) {
-			this.path = "/" + this.path;
+		if (!path.startsWith("/")) {
+			path = "/" + path;
 		}
 		if (path.equals("/")) path = "";
 		this.path = path;
