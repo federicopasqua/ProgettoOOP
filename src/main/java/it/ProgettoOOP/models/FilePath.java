@@ -43,7 +43,7 @@ public class FilePath extends Path{
 	}
 	
 	/**
-	 *Metodo che corregge eventuali errori e controlla non ci siano tentativi di accedere file non autorizzati
+	 *Metodo che corregge eventuali errori e controlla non ci siano tentativi di accedere file senza autorizzazione
 	 */
 	public Boolean sanitize_check() {
 		this.path.replaceAll("//", "/");
