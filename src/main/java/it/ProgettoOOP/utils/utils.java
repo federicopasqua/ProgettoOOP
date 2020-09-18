@@ -29,7 +29,7 @@ public class utils {
 	 *@throws InvalidPathException Viene lanciata un'eccezione se il percorso non è valido.
 	 */
 	public static directory map_directory(DirectoryPath path) throws InvalidPathException{
-		String directoryName = "C:/Users/feder/Documents/GitHub/ProgettoOOP/Downloads";
+		String directoryName = new File("").getAbsolutePath() + "/Downloads";
 		
 		
 		File filedir = new File(directoryName + path.getPath());

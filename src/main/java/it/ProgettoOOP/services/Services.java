@@ -118,7 +118,7 @@ public class Services {
 		byte[] buffer = new byte[4096];
 		int n;
 		
-		String directoryName = "C:/Users/feder/Documents/GitHub/ProgettoOOP/Downloads";
+		String directoryName = new File("").getAbsolutePath() + "/Downloads";
 	    String fileName = "temp.zip";
 	    File file = new File(directoryName + "/" + fileName);
 
@@ -157,7 +157,7 @@ public class Services {
 			throw new InvalidPathException("Nice Try");
 		}
 		
-		String directoryName = "C:/Users/feder/Documents/GitHub/ProgettoOOP/Downloads";
+		String directoryName = new File("").getAbsolutePath() + "/Downloads";
 		
 		
 		if (path.getPath().equals("/")) {
