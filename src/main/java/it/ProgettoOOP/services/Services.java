@@ -63,7 +63,9 @@ public class Services {
 			byte[] input = jsonBody.getBytes("utf-8");
 			os.write(input, 0, input.length);
 		}
-
+		
+		if (openConnection.getResponseCode() == 409) throw new InvalidPathException("This folder does not exist");
+			
 		InputStream in = openConnection.getInputStream();
 
 		String data = "";
@@ -114,6 +116,7 @@ public class Services {
 					"Bearer " + dotenv.get("TOKEN"));
 		connection.setRequestProperty("Content-Type", "application/octet-stream");
 		connection.setRequestProperty("Dropbox-API-Arg", "{\"path\": \"" + path.dropboxCompatiblePath() + "\"}");
+		if (connection.getResponseCode() == 409) throw new InvalidPathException("This folder does not exist");
 		InputStream input = connection.getInputStream();
 		byte[] buffer = new byte[4096];
 		int n;
