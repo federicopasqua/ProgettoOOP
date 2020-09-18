@@ -22,11 +22,16 @@ import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
+
+import io.github.cdimascio.dotenv.Dotenv;
+
 /**
  *Classe di tutti i servizi usati nel Controller.
  */
 @Service
 public class Services {
+	
+	Dotenv dotenv = Dotenv.load();
 	
 	/**
 	 *Richiede la lista delle cartelle presenti nel dropbox.
@@ -44,7 +49,7 @@ public class Services {
 		HttpURLConnection openConnection = (HttpURLConnection) new URL(url).openConnection();
 		openConnection.setRequestMethod("POST");
 		openConnection.setRequestProperty("Authorization",
-					"Bearer kif7AowhemcAAAAAAAAAAdCeflZWrY4vqGksu16E8VAGSyIzy34QZAQyyMbg_FFv");
+					"Bearer " + dotenv.get("TOKEN"));
 		openConnection.setRequestProperty("Content-Type", "application/json");
 		openConnection.setRequestProperty("Accept", "application/json");
 		openConnection.setDoOutput(true);
@@ -106,7 +111,7 @@ public class Services {
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod("POST");
 		connection.setRequestProperty("Authorization",
-					"Bearer kif7AowhemcAAAAAAAAAAdCeflZWrY4vqGksu16E8VAGSyIzy34QZAQyyMbg_FFv");
+					"Bearer " + dotenv.get("TOKEN"));
 		connection.setRequestProperty("Content-Type", "application/octet-stream");
 		connection.setRequestProperty("Dropbox-API-Arg", "{\"path\": \"" + path.dropboxCompatiblePath() + "\"}");
 		InputStream input = connection.getInputStream();

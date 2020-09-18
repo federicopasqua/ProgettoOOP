@@ -43,6 +43,7 @@ public class Controller {
 		} catch (InvalidPathException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}catch (Exception e) {
+			e.printStackTrace();
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error with dropbox API");
 		}
 		
